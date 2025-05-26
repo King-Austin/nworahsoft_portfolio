@@ -20,7 +20,7 @@ const Hero = () => {
               </ul>
               <div className="hero-cta">
                 <a href="#services" className="btn btn-primary">Explore Our Services</a>
-                <a href="tel:+1 (555) 987-6543" className="btn btn-link"><i className="bi bi-telephone"></i> +1 (555) 987-6543</a>
+                <a href="tel:+(234)9134846838" className="btn btn-link"><i className="bi bi-telephone"></i> +234-9134846838</a>
               </div>
             </div>
           </div>

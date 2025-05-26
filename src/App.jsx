@@ -32,6 +32,9 @@ function App() {
       mirror: false
     });
 
+  
+
+
     // Initialize mobile nav toggle
     const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
     if (mobileNavToggle) {
