@@ -60,7 +60,7 @@ const Stats = () => {
                 </div>
                 <div className="stats-content">
                   <div className="stats-number">
-                    <CountUp end={5} duration={2} className='purecounter' /> <span className="plus">+</span>
+                    <CountUp end={5} duration={3} className='purecounter' /> <span className="plus">+</span>
                   </div>
                   <p>Expert Team Members</p>
                 </div>

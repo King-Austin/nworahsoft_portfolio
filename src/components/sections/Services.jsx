@@ -1,13 +1,9 @@
 import React from 'react';
-import SectionTitle from '../common/SectionTitle';
 
 const Services = () => {
   return (
     <section id="services" className="services section">
-      <SectionTitle 
-        title="Services" 
-        description="Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit" 
-      />
+
 
       <div className="container" data-aos="fade-up" data-aos-delay="100">
         <div className="services-row">

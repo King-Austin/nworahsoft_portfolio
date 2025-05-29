@@ -13,13 +13,13 @@ const Footer = () => {
             <div className="footer-contact pt-3">
                 <p>Awka</p>
                 <p>Anambra State, Nigeria</p>
-                <p className="mt-3">
+              <p className="mt-3">
                   <strong>Phone:</strong> <a href="tel:+2349134846838">+234 9134846838</a>
                 </p>
                <p>
                   <strong>Email:</strong> <a href="mailto:nworahebuka.a@gmail.com">nworahebuka.a@gmail.com</a>
                 </p>
-</              div>
+              </div>
             <div className="social-links d-flex mt-4">
               <a href="x.com/kingaustin360" className="me-3"><i className="bi bi-twitter-x"></i></a>
               <a href=""><i className="bi bi-facebook"></i></a>

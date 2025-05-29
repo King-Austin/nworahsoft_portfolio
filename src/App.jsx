@@ -6,6 +6,17 @@ import Header from './components/layout/Header';
 import About from './components/sections/About';
 import Hero from './components/sections/Hero';
 import Stats from './components/sections/Stats';
+import Footer from './components/layout/Footer';
+import ScrollToTop from './components/layout/ScrollToTop.jsx';
+import AOS from 'aos';
+import Services from './components/sections/Services';
+import Testimonials from './components/sections/Testimonials';
+import Clients from './components/sections/Clients';
+import HowWeWork from './components/sections/Work';
+import FAQ from './components/sections/Fag';
+import CallToAction from './components/sections/Action';
+import Team from './components/sections/Team';
+
 {/*}
 import Services from './components/sections/Services';
 import Clients from './components/sections/Clients';
@@ -16,11 +27,10 @@ import CallToAction from './components/sections/CallToAction';
 import Team from './components/sections/Team';
 import Contact from './components/sections/Contact';
 */}
-import Footer from './components/layout/Footer';
-import ScrollToTop from './components/layout/ScrollToTop.jsx';
+
 
 // Import AOS for animations
-import AOS from 'aos';
+
 
 function App() {
   useEffect(() => {
@@ -53,12 +63,7 @@ function App() {
       });
     });
 
-    // Initialize FAQ toggles
-    document.querySelectorAll('.faq-toggle').forEach(toggle => {
-      toggle.addEventListener('click', function() {
-        this.closest('.faq-item').classList.toggle('faq-active');
-      });
-    });
+
 
     // Clean up event listeners on component unmount
     return () => {
@@ -67,7 +72,7 @@ function App() {
         mobileNavToggle.removeEventListener('click', function() {});
       }
     };
-  }, []);
+      }, []);
 
   return (
     <Router>
@@ -80,6 +85,14 @@ function App() {
               <Hero />
               <About />
               <Stats />
+              <Services />
+              <Testimonials />
+              <Clients />
+              <HowWeWork />
+              <FAQ />
+              <CallToAction />
+              <Team />
+
 
                 {/*
                 <Services />
