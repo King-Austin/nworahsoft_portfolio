@@ -9,14 +9,12 @@ import Stats from './components/sections/Stats';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop.jsx';
 import AOS from 'aos';
-import Services from './components/sections/Services';
 import Testimonials from './components/sections/Testimonials';
 import Clients from './components/sections/Clients';
 import HowWeWork from './components/sections/Work';
 import FAQ from './components/sections/Fag';
 import CallToAction from './components/sections/Action';
 import Team from './components/sections/Team';
-
 {/*}
 import Services from './components/sections/Services';
 import Clients from './components/sections/Clients';
@@ -85,7 +83,6 @@ function App() {
               <Hero />
               <About />
               <Stats />
-              <Services />
               <Testimonials />
               <Clients />
               <HowWeWork />

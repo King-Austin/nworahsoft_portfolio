@@ -1,177 +1,156 @@
+import { useState } from 'react';
+import { Collapse } from 'react-collapse';
+
 function FAQ() {
+    const [activeTab, setActiveTab] = useState('general');
+    const [openItem, setOpenItem] = useState(null); // Changed from openItems to openItem
+
+    const toggleItem = (tabKey, itemIndex) => {
+        const key = `${tabKey}-${itemIndex}`;
+        // If clicking the same item, close it. Otherwise, open the new one.
+        setOpenItem(openItem === key ? null : key);
+    };
+
+    const faqData = {
+        general: [
+            {
+                question: 'What makes NworahSoft Technologies different from other software companies?',
+                answer: 'We combine cutting-edge technology with personalized service. Our team takes time to understand your unique business needs and delivers custom solutions that drive real results. We focus on building long-term partnerships rather than just completing projects.'
+            },
+            {
+                question: 'Do you work with small businesses and startups?',
+                answer: 'Absolutely! We specialize in helping small businesses and startups establish their digital presence. We offer scalable solutions that grow with your business, from simple websites to complex enterprise applications. Our flexible pricing and phased development approach make professional technology solutions accessible to businesses of all sizes.'
+            },
+            {
+                question: 'How long does it typically take to complete a project?',
+                answer: 'Project timelines vary based on complexity and scope. A simple website typically takes 2-4 weeks, while complex web applications may take 2-6 months. We provide detailed timelines during our initial consultation and keep you updated throughout the development process.'
+            }
+        ],
+        services: [
+            {
+                question: 'What web development services do you offer?',
+                answer: 'We offer comprehensive web development services including responsive websites, e-commerce platforms, web applications, content management systems, and API development. We work with modern technologies like React, Node.js, and various content management systems.'
+            },
+            {
+                question: 'Do you provide mobile app development?',
+                answer: 'Yes, we develop both native and cross-platform mobile applications for iOS and Android. We also specialize in progressive web apps (PWAs) that provide app-like experiences through web browsers.'
+            },
+            {
+                question: 'Can you help with digital marketing and SEO?',
+                answer: 'While our primary focus is software development, we implement SEO-friendly code and can provide basic digital marketing guidance. For comprehensive marketing campaigns, we can recommend trusted partners in our network.'
+            }
+        ],
+        pricing: [
+            {
+                question: 'How do you structure your pricing?',
+                answer: 'We offer flexible pricing options including fixed-price projects, hourly rates, and retainer agreements. Pricing depends on project complexity, timeline, and specific requirements. We provide detailed quotes after understanding your needs.'
+            },
+            {
+                question: 'Do you require full payment upfront?',
+                answer: 'No, we typically work with milestone-based payments. Common structure is 30% upfront, 40% at mid-project, and 30% on completion. For larger projects, we can arrange additional payment milestones to ease cash flow. This approach ensures both parties are protected and progress is maintained throughout the project.'
+            },
+            {
+                question: 'Are there any hidden costs or additional fees?',
+                answer: 'We believe in transparent pricing. All costs are outlined in our initial proposal, including any third-party services, hosting, or licensing fees. Additional costs only occur if you request changes outside the original scope.'
+            }
+        ],
+        support: [
+            {
+                question: 'What kind of support do you provide after project completion?',
+                answer: 'We provide comprehensive post-launch support including bug fixes, security updates, performance monitoring, and technical assistance. Support packages range from basic maintenance to full ongoing development partnerships. All projects include a 30-day warranty period for bug fixes and minor adjustments at no additional cost.'
+            },
+            {
+                question: 'How quickly do you respond to support requests?',
+                answer: 'Our standard response time is within 24 hours for non-urgent issues and within 4 hours for critical problems. For clients with premium support packages, we offer faster response times and priority handling.'
+            },
+            {
+                question: 'Can you help train our team to use the new system?',
+                answer: 'Absolutely! We provide comprehensive training sessions, documentation, and video tutorials. Training can be conducted in-person, via video calls, or through recorded sessions depending on your preferences and needs. We ensure your team is comfortable and confident using the new system before we consider the project complete.'
+            }
+        ]
+    };
+
+    const tabs = [
+        { key: 'general', label: 'General', shortLabel: 'Info', icon: 'bi-question-circle' },
+        { key: 'services', label: 'Services', shortLabel: 'Work', icon: 'bi-gear' },
+        { key: 'pricing', label: 'Pricing', shortLabel: 'Cost', icon: 'bi-credit-card' },
+        { key: 'support', label: 'Support', shortLabel: 'Help', icon: 'bi-headset' }
+    ];
 
     return (
-
         <section id="faq" className="faq section">
-
-
             <div className="container section-title" data-aos="fade-up">
                 <h2>Frequently Asked Questions</h2>
-                <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+                <p>Get answers to the most common questions about our services, pricing, and support</p>
             </div>
 
             <div className="container" data-aos="fade-up" data-aos-delay="100">
-
                 <div className="row justify-content-center">
                     <div className="col-lg-10">
-
+                        
+                        {/* Tab Navigation */}
                         <div className="faq-tabs mb-5">
-                            <ul className="nav nav-pills justify-content-center" id="faqTab" role="tablist">
-                                <li className="nav-item" role="presentation">
-                                    <button className="nav-link active" id="general-tab" data-bs-toggle="pill" data-bs-target="#faq-general" type="button" role="tab" aria-controls="general" aria-selected="true">
-                                        <i className="bi bi-question-circle me-2"></i>General
-                                    </button>
-                                </li>
-                                <li className="nav-item" role="presentation">
-                                    <button className="nav-link" id="pricing-tab" data-bs-toggle="pill" data-bs-target="#faq-pricing" type="button" role="tab" aria-controls="pricing" aria-selected="false">
-                                        <i className="bi bi-credit-card me-2"></i>Pricing
-                                    </button>
-                                </li>
-                                <li className="nav-item" role="presentation">
-                                    <button className="nav-link" id="support-tab" data-bs-toggle="pill" data-bs-target="#faq-support" type="button" role="tab" aria-controls="support" aria-selected="false">
-                                        <i className="bi bi-headset me-2"></i>Support
-                                    </button>
-                                </li>
+                            <ul className="nav nav-pills d-flex justify-content-center" style={{flexWrap: 'nowrap', overflowX: 'auto', gap: '0.5rem'}}>
+                                {tabs.map((tab) => (
+                                    <li key={tab.key} className="nav-item flex-shrink-0">
+                                        <button 
+                                            className={`nav-link px-2 px-md-3 ${activeTab === tab.key ? 'active' : ''}`}
+                                            onClick={() => {
+                                                setActiveTab(tab.key);
+                                                setOpenItem(null); // Close any open FAQ when switching tabs
+                                            }}
+                                        >
+                                            <i className={`bi ${tab.icon} me-1 me-md-2`}></i>
+                                            <span className="d-none d-sm-inline">{tab.label}</span>
+                                            <span className="d-sm-none">{tab.shortLabel}</span>
+                                        </button>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
-                        <div className="tab-content" id="faqTabContent">
-
-                            <div className="tab-pane fade show active" id="faq-general" role="tabpanel" aria-labelledby="general-tab">
-                                <div className="faq-list">
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="200">
-                                        <h3>
-                                            <span className="num">1</span>
-                                            <span className="question">Lorem ipsum dolor sit amet, consectetur adipiscing elit?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra ornare, eros dolor interdum nulla, ut commodo diam libero vitae erat.</p>
+                        {/* FAQ Content */}
+                        <div className="faq-content">
+                            <div className="faq-list">
+                                {faqData[activeTab]?.map((faq, index) => {
+                                    const itemKey = `${activeTab}-${index}`;
+                                    const isOpen = openItem === itemKey; // Only one item can be open
+                                    
+                                    return (
+                                        <div 
+                                            key={itemKey}
+                                            className="faq-item" 
+                                            data-aos="fade-up" 
+                                            data-aos-delay={200 + (index * 100)}
+                                        >
+                                            <h3 
+                                                className="faq-question" 
+                                                onClick={() => toggleItem(activeTab, index)}
+                                                style={{ cursor: 'pointer' }}
+                                            >
+                                                <span className="num">{index + 1}</span>
+                                                <span className="question">{faq.question}</span>
+                                                <i className={`bi ${isOpen ? 'bi-dash-lg' : 'bi-plus-lg'} faq-toggle`}></i>
+                                            </h3>
+                                            
+                                            <Collapse isOpened={isOpen}>
+                                                <div className="faq-content-inner" style={{ padding: '1rem 0' }}>
+                                                    <p>{faq.answer}</p>
+                                                </div>
+                                            </Collapse>
                                         </div>
-                                    </div>
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="300">
-                                        <h3>
-                                            <span className="num">2</span>
-                                            <span className="question">Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim.</p>
-                                            <p>Mauris ultrices eros in cursus turpis massa tincidunt dui. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique senectus et netus et malesuada.</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="400">
-                                        <h3>
-                                            <span className="num">3</span>
-                                            <span className="question">Dolor sit amet consectetur adipiscing elit pellentesque?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus.</p>
-                                            <p>Mauris ultrices eros in cursus turpis massa tincidunt dui. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique senectus et netus et malesuada.</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div className="tab-pane fade" id="faq-pricing" role="tabpanel" aria-labelledby="pricing-tab">
-                                <div className="faq-list">
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="200">
-                                        <h3>
-                                            <span className="num">1</span>
-                                            <span className="question">Ac odio tempor orci dapibus ultrices in iaculis?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in.</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="300">
-                                        <h3>
-                                            <span className="num">2</span>
-                                            <span className="question">Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.</p>
-                                            <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan.</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="400">
-                                        <h3>
-                                            <span className="num">3</span>
-                                            <span className="question">Varius vel pharetra vel turpis nunc eget lorem dolor?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>Laoreet sit amet cursus sit amet dictum sit amet justo. Mauris vitae ultricies leo integer malesuada nunc vel. Tincidunt eget nullam non nisi est sit amet. Turpis nunc eget lorem dolor sed. Ut venenatis tellus in metus vulputate eu scelerisque.</p>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-
-                            <div className="tab-pane fade" id="faq-support" role="tabpanel" aria-labelledby="support-tab">
-                                <div className="faq-list">
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="200">
-                                        <h3>
-                                            <span className="num">1</span>
-                                            <span className="question">Tortor vitae purus faucibus ornare suspendisse sed nisi lacus?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
-                                            <p>Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est.</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="300">
-                                        <h3>
-                                            <span className="num">2</span>
-                                            <span className="question">Tortor dignissim convallis aenean et tortor at risus viverra?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>In hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit.</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="faq-item" data-aos="fade-up" data-aos-delay="400">
-                                        <h3>
-                                            <span className="num">3</span>
-                                            <span className="question">Venenatis urna cursus eget nunc scelerisque viverra mauris in?</span>
-                                            <i className="bi bi-plus-lg faq-toggle"></i>
-                                        </h3>
-                                        <div className="faq-content">
-                                            <p>Mauris ultrices eros in cursus turpis massa tincidunt dui. Pellentesque nec nam aliquam sem et tortor. Habitant morbi tristique senectus et netus et malesuada.</p>
-                                            <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.</p>
-                                        </div>
-                                    </div>
-
-                                </div>
+                                    );
+                                })}
                             </div>
                         </div>
 
                         <div className="faq-cta text-center mt-5" data-aos="fade-up" data-aos-delay="300">
                             <p>Still have questions? We're here to help!</p>
-                            <a href="#" className="btn btn-primary">Contact Support</a>
+                            <a href="#contact" className="btn btn-primary">Contact Support</a>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
         </section>
     );
 }
