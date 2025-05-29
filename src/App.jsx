@@ -10,21 +10,11 @@ import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop.jsx';
 import AOS from 'aos';
 import Testimonials from './components/sections/Testimonials';
-import Clients from './components/sections/Clients';
 import HowWeWork from './components/sections/Work';
 import FAQ from './components/sections/Fag';
 import CallToAction from './components/sections/Action';
 import Team from './components/sections/Team';
-{/*}
-import Services from './components/sections/Services';
-import Clients from './components/sections/Clients';
-import Testimonials from './components/sections/Testimonials';
-import HowWeWork from './components/sections/HowWeWork';
-import Faq from './components/sections/Faq';
-import CallToAction from './components/sections/CallToAction';
-import Team from './components/sections/Team';
 import Contact from './components/sections/Contact';
-*/}
 
 
 // Import AOS for animations
@@ -84,11 +74,11 @@ function App() {
               <About />
               <Stats />
               <Testimonials />
-              <Clients />
               <HowWeWork />
               <FAQ />
               <CallToAction />
               <Team />
+              <Contact />
 
 
                 {/*

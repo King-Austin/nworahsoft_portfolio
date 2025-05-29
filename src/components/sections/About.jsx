@@ -116,7 +116,7 @@ const About = () => {
                       <div className="d-flex justify-content-between">
                         <span className="skill-title">
                           <i className="bi bi-check-circle text-success me-2"></i>
-                          E-commerce & API Integration
+                          E-commerce
                         </span>
                         <span className="skill-badge">Advanced</span>
                       </div>
