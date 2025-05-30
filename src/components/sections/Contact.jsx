@@ -76,8 +76,17 @@ function Contact() {
                         <div className="card border-0 shadow h-100">
                             <div className="card-body p-0">
                                 {/* Google Map */}
-                                <div className="map-container" style={{height: '250px', overflow: 'hidden'}}>
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3201.9008562536396!2d7.0798985738793245!3d6.233967493754231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sng!4v1748561727452!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <div className="map-container" style={{height: '250px', overflow: 'hidden', borderRadius: '0.375rem 0.375rem 0 0'}}>
+                                    <iframe 
+                                        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3201.9008562536396!2d7.0798985738793245!3d6.233967493754231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sen!2sng!4v1748561727452!5m2!1sen!2sng" 
+                                        width="100%" 
+                                        height="250" 
+                                        style={{border: 0}} 
+                                        allowFullScreen="" 
+                                        loading="lazy" 
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                        title="NworahSoft Location"
+                                    ></iframe>
                                 </div>
 
                                 {/* Contact Information */}
@@ -92,11 +101,11 @@ function Contact() {
                                         <div className="contact-item mb-3">
                                             <div className="d-flex align-items-center">
                                                 <div className="contact-icon me-3">
-                                                    <i className="bi bi-geo-alt-fill" style={{color: '#f85d23'}}></i>
+                                                    <i className="bi bi-geo-alt-fill" style={{color: '#f85d23', fontSize: '1.2rem'}}></i>
                                                 </div>
                                                 <div>
                                                     <h6 className="mb-1 text-dark">Location</h6>
-                                                    <p className="small text-muted mb-0">Nigeria</p>
+                                                    <p className="small text-muted mb-0">Enugu, Nigeria</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,11 +113,11 @@ function Contact() {
                                         <div className="contact-item mb-3">
                                             <div className="d-flex align-items-center">
                                                 <div className="contact-icon me-3">
-                                                    <i className="bi bi-envelope-fill" style={{color: '#f85d23'}}></i>
+                                                    <i className="bi bi-envelope-fill" style={{color: '#f85d23', fontSize: '1.2rem'}}></i>
                                                 </div>
                                                 <div>
                                                     <h6 className="mb-1 text-dark">Email</h6>
-                                                    <p className="small text-muted mb-0">nworahebuka.a@gmail.com</p>
+                                                    <a href="mailto:nworahebuka.a@gmail.com" className="small text-muted mb-0 text-decoration-none">nworahebuka.a@gmail.com</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -116,11 +125,11 @@ function Contact() {
                                         <div className="contact-item mb-3">
                                             <div className="d-flex align-items-center">
                                                 <div className="contact-icon me-3">
-                                                    <i className="bi bi-telephone-fill" style={{color: '#f85d23'}}></i>
+                                                    <i className="bi bi-telephone-fill" style={{color: '#f85d23', fontSize: '1.2rem'}}></i>
                                                 </div>
                                                 <div>
                                                     <h6 className="mb-1 text-dark">Phone</h6>
-                                                    <p className="small text-muted mb-0">+234 (0) 913 484 6838</p>
+                                                    <a href="tel:+2349134846838" className="small text-muted mb-0 text-decoration-none">+234 (0) 913 484 6838</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,12 +137,30 @@ function Contact() {
                                         <div className="contact-item mb-4">
                                             <div className="d-flex align-items-center">
                                                 <div className="contact-icon me-3">
-                                                    <i className="bi bi-clock-fill" style={{color: '#f85d23'}}></i>
+                                                    <i className="bi bi-clock-fill" style={{color: '#f85d23', fontSize: '1.2rem'}}></i>
                                                 </div>
                                                 <div>
                                                     <h6 className="mb-1 text-dark">Response Time</h6>
                                                     <p className="small text-muted mb-0">Within 24 hours</p>
                                                 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Quick Contact Actions */}
+                                    <div className="quick-contact mb-4">
+                                        <div className="row g-2">
+                                            <div className="col-6">
+                                                <a href="tel:+2349134846838" className="btn btn-outline-primary btn-sm w-100" style={{borderColor: '#f85d23', color: '#f85d23'}}>
+                                                    <i className="bi bi-telephone me-1"></i>
+                                                    Call
+                                                </a>
+                                            </div>
+                                            <div className="col-6">
+                                                <a href="https://wa.me/2349134846838" className="btn btn-success btn-sm w-100" target="_blank" rel="noopener noreferrer">
+                                                    <i className="bi bi-whatsapp me-1"></i>
+                                                    WhatsApp
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

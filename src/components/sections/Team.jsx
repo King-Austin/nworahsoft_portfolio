@@ -99,10 +99,10 @@ function Team() {
                                                      fontSize: '2rem',
                                                      fontWeight: 'bold'
                                                  }}>
-                                                AU
+                                                NEA
                                             </div>
                                         </div>
-                                        <h5 className="text-dark mb-1">Austin Nworah</h5>
+                                        <h5 className="text-dark mb-1">Nworah Ebuka .A</h5> 
                                         <p className="text-muted mb-3">Founder & Lead Developer</p>
                                         <p className="small text-muted mb-3">
                                             Full-stack developer passionate about building modern web applications 
@@ -138,10 +138,10 @@ function Team() {
                                                      fontSize: '2rem',
                                                      fontWeight: 'bold'
                                                  }}>
-                                                CO
+                                                JO
                                             </div>
                                         </div>
-                                        <h5 className="text-dark mb-1">Chidi Okoro</h5>
+                                        <h5 className="text-dark mb-1">Jennifer Okoro</h5>
                                         <p className="text-muted mb-3">Co-Founder & UI/UX Designer</p>
                                         <p className="small text-muted mb-3">
                                             Creative designer focused on user experience and modern interfaces. 
@@ -177,15 +177,15 @@ function Team() {
                                                      fontSize: '2rem',
                                                      fontWeight: 'bold'
                                                  }}>
-                                                EM
+                                                CA
                                             </div>
                                         </div>
-                                        <h5 className="text-dark mb-1">Emmanuel Musa</h5>
+                                        <h5 className="text-dark mb-1">Chimaobi Anthony</h5>
                                         <p className="text-muted mb-3">Backend Developer</p>
                                         <p className="small text-muted mb-3">
                                             Specialist in server-side development, API design, and database 
-                                            management. Expert in Python, Django, and building scalable 
-                                            backend systems for web applications.
+                                            management. Expert in PHP, Laravel, and building scalable 
+                                            backend systems for web applications. Top in the line
                                         </p>
                                         <div className="d-flex justify-content-center gap-2">
                                             <a href="#" className="btn btn-sm btn-outline-secondary">

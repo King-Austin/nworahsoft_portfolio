@@ -39,15 +39,15 @@ const Header = () => {
     <header id="header" className="header d-flex align-items-center sticky-top">
       <div className="container-fluid container-xl position-relative d-flex align-items-center">
         
-        {/* Logo - NworahSoft Always Intact */}
+        {/* Logo - NworahSoft */}
         <Link to="/" className="logo d-flex align-items-center me-auto">
           <div className="logo-container">
             <h1 className="sitename">
               <span className="brand-primary">NWORAHSOFT</span>
             </h1>
-            {/* Fixed Tagline - Only show one version based on screen size */}
+            {/* Simple tagline - no animation */}
             <span className="tagline d-none d-md-block">Building Tomorrow's Tech</span>
-            <span className="tagline d-block d-md-none">Tomorrow's Tech</span>
+            <span className="tagline d-block d-md-none">Building Tomorrow's Tech</span>
           </div>
         </Link>
 
@@ -105,22 +105,22 @@ const Header = () => {
         {/* Responsive Header Actions */}
         <div className="header-actions d-flex align-items-center">
           {/* Desktop CTA */}
-          <Link className="btn-getstarted d-none d-lg-flex" to="/">
+          <a href="#contact" className="btn-getstarted d-none d-lg-flex">
             <i className="bi bi-rocket-takeoff me-2"></i>
             Start Your Project
-          </Link>
+          </a>
           
           {/* Tablet CTA */}
-          <Link className="btn-getstarted d-none d-md-flex d-lg-none" to="/">
+          <a href="#contact" className="btn-getstarted d-none d-md-flex d-lg-none">
             <i className="bi bi-rocket-takeoff me-1"></i>
             Start Project
-          </Link>
+          </a>
           
           {/* Mobile CTA */}
-          <Link className="btn-getstarted d-md-none" to="/" title="Start Your Project">
+          <a href="#contact" className="btn-getstarted d-md-none" title="Start Your Project">
             <i className="bi bi-rocket-takeoff"></i>
             <span className="visually-hidden">Start Project</span>
-          </Link>
+          </a>
         </div>
       </div>
     </header>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   FaReact, 
   FaNodeJs, 
@@ -18,6 +18,35 @@ import {
 } from 'react-icons/si';
 
 const Hero = () => {
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [isTyping, setIsTyping] = useState(true);
+
+  // Rotating phrases for the animation
+  const phrases = [
+    "Business Ideas",
+    "Creative Concepts", 
+    "Digital Dreams",
+    "Startup Visions",
+    "Tech Solutions",
+    "E-commerce Goals",
+    "Web Projects",
+    "Mobile Apps"
+  ];
+
+  // Text rotation animation effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsTyping(false);
+      
+      setTimeout(() => {
+        setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
+        setIsTyping(true);
+      }, 500);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [phrases.length]);
+
   return (
     <section id="hero" className="hero section dark-background">
       <div className="container" data-aos="fade-up">
@@ -28,7 +57,19 @@ const Hero = () => {
                 <i className="bi bi-code-slash"></i>
                 <span>Custom Software Development</span>
               </div>
-              <h1>Transform Your <span className="highlight">Business Ideas</span> Into Powerful Digital Solutions</h1>
+              
+              {/* Animated Headline */}
+              <h1>
+                Transform Your{' '}
+                <span className="animated-phrase-container">
+                  <span className={`highlight animated-phrase ${isTyping ? 'typing' : 'deleting'}`}>
+                    {phrases[currentPhraseIndex]}
+                  </span>
+                  <span className="typing-cursor">|</span>
+                </span>
+                {' '}Into Powerful Digital Solutions
+              </h1>
+
               <p className="lead">NworahSoft Technologies builds scalable web applications, mobile apps, and custom software that drive real business growth for startups and enterprises across Nigeria.</p>
               
               <ul className="hero-features">
@@ -142,6 +183,75 @@ const Hero = () => {
       </div>
 
       <style jsx>{`
+        /* Animated Text Styles */
+        .animated-phrase-container {
+          position: relative;
+          display: inline-block;
+        }
+        
+        .animated-phrase {
+          display: inline-block;
+          min-width: 200px;
+          text-align: left;
+          transition: all 0.4s ease;
+        }
+        
+        .animated-phrase.typing {
+          opacity: 1;
+          transform: translateY(0);
+          animation: typeIn 0.8s ease-out;
+        }
+        
+        .animated-phrase.deleting {
+          opacity: 0.6;
+          transform: translateY(-5px);
+          animation: typeOut 0.5s ease-in;
+        }
+        
+        .typing-cursor {
+          color: #f85d23;
+          animation: blink 1.2s infinite;
+          font-weight: 300;
+          margin-left: 2px;
+        }
+        
+        @keyframes typeIn {
+          0% {
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+          }
+          50% {
+            transform: translateY(-2px) scale(1.02);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        @keyframes typeOut {
+          0% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+          100% {
+            opacity: 0.3;
+            transform: translateY(10px) scale(0.95);
+          }
+        }
+        
+        @keyframes blink {
+          0%, 45% {
+            opacity: 1;
+          }
+          50%, 95% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+
         .tech-stack {
           margin: 1.5rem 0;
         }
@@ -229,6 +339,11 @@ const Hero = () => {
         }
         
         @media (max-width: 768px) {
+          .animated-phrase {
+            min-width: 160px;
+            font-size: 0.9em;
+          }
+          
           .tech-logos {
             gap: 0.5rem;
           }
@@ -240,6 +355,13 @@ const Hero = () => {
           
           .floating-element.tech-stack-floating {
             display: none;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .animated-phrase {
+            min-width: 140px;
+            font-size: 0.85em;
           }
         }
       `}</style>
