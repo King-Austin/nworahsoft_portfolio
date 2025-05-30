@@ -118,34 +118,7 @@ function CallToAction() {
 
                 </div>
 
-                {/* Bottom Section */}
-                <div className="row mt-5 pt-4 border-top border-white border-opacity-25">
-                    <div className="col-12 text-center text-white" data-aos="fade-up" data-aos-delay="400">
-                        <h5 className="mb-3">Why Choose NworahSoft?</h5>
-                        <div className="row g-4">
-                            <div className="col-md-3">
-                                <i className="bi bi-lightning-charge-fill fs-1 mb-2 d-block"></i>
-                                <h6>Fast Delivery</h6>
-                                <small className="opacity-75">Quick turnaround times</small>
-                            </div>
-                            <div className="col-md-3">
-                                <i className="bi bi-currency-dollar fs-1 mb-2 d-block"></i>
-                                <h6>Fair Pricing</h6>
-                                <small className="opacity-75">Startup-friendly rates</small>
-                            </div>
-                            <div className="col-md-3">
-                                <i className="bi bi-chat-heart-fill fs-1 mb-2 d-block"></i>
-                                <h6>Personal Touch</h6>
-                                <small className="opacity-75">Direct founder involvement</small>
-                            </div>
-                            <div className="col-md-3">
-                                <i className="bi bi-arrow-up-circle-fill fs-1 mb-2 d-block"></i>
-                                <h6>Growth Focus</h6>
-                                <small className="opacity-75">Built for scalability</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+ 
 
             </div>
         </section>
