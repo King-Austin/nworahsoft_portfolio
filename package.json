@@ -1,5 +1,5 @@
 {
-  "name": "codespaces-react",
+  "name": "nworahsoft",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,7 @@
     "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
     "react-height": "^3.0.2",
+    "react-helmet-async": "^2.0.5",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
     "react-router-dom": "^7.6.0",
@@ -54,6 +55,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.1.1",
     "jsdom": "^22.1.0",
+    "lighthouse": "^12.8.2",
     "vite": "^4.5.9",
     "vitest": "^0.34.6"
   }

@@ -1,0 +1,60 @@
+# NworahSoft Technologies - Robots.txt
+# Leading Nigerian Software Development Company
+# https://nworahsoft.com
+
+User-agent: *
+Allow: /
+
+# High priority pages
+Allow: /about
+Allow: /services
+Allow: /portfolio
+Allow: /contact
+Allow: /team
+Allow: /blog
+
+# Static assets optimization
+Allow: /assets/
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.svg$
+
+# Block access to sensitive files
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /dist/
+Disallow: /admin/
+Disallow: /api/private/
+Disallow: /*.json$ 
+Disallow: /package.json
+Disallow: /vite.config.js
+
+# Search engine specific rules
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: facebookexternalhit/
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Sitemap locations
+Sitemap: https://nworahsoft.com/sitemap.xml
+Sitemap: https://nworahsoft.com/sitemap-images.xml
+
+# Host declaration
+Host: https://nworahsoft.com

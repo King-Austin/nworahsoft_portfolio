@@ -1,26 +1,84 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-// Import components
-import Header from './components/layout/Header';
-import About from './components/sections/About';
-import Hero from './components/sections/Hero';
-import Stats from './components/sections/Stats';
-import Footer from './components/layout/Footer';
-import ScrollToTop from './components/layout/ScrollToTop.jsx';
+import { HelmetProvider } from 'react-helmet-async';
 import AOS from 'aos';
-import Testimonials from './components/sections/Testimonials';
-import HowWeWork from './components/sections/Work';
-import FAQ from './components/sections/Fag';
-import CallToAction from './components/sections/Action';
-import Team from './components/sections/Team';
-import Contact from './components/sections/Contact';
+
+// Import layout components
+import Header from './components/layout/Header';
+import Footer from './components/layout/Footer';
+import ScrollToTop from './components/layout/ScrollToTop';
+
+// Import common components
+import SEOHead from './components/common/SEOHead';
+import ErrorBoundary from './components/common/ErrorBoundary';
+import { LoadingSpinner } from './components/common/LoadingComponents';
+
+// Lazy load sections for better performance
+const Hero = lazy(() => import('./components/sections/HeroImproved'));
+const About = lazy(() => import('./components/sections/About'));
+const Stats = lazy(() => import('./components/sections/Stats'));
+const Testimonials = lazy(() => import('./components/sections/Testimonials'));
+const HowWeWork = lazy(() => import('./components/sections/Work'));
+const FAQ = lazy(() => import('./components/sections/Fag'));
+const CallToAction = lazy(() => import('./components/sections/Action'));
+const Team = lazy(() => import('./components/sections/Team'));
+const Contact = lazy(() => import('./components/sections/ContactImproved'));
 
 
-// Import AOS for animations
+// Custom hook for mobile navigation
+const useMobileNavigation = () => {
+  useEffect(() => {
+    const handleMobileToggle = () => {
+      document.body.classList.toggle('mobile-nav-active');
+      const toggle = document.querySelector('.mobile-nav-toggle');
+      if (toggle) {
+        toggle.classList.toggle('bi-list');
+        toggle.classList.toggle('bi-x');
+      }
+    };
 
+    const handleDropdownToggle = (e) => {
+      e.preventDefault();
+      e.currentTarget.closest('li')?.classList.toggle('dropdown-active');
+    };
+
+    // Add event listeners
+    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+    const dropdownToggles = document.querySelectorAll('.toggle-dropdown');
+
+    mobileNavToggle?.addEventListener('click', handleMobileToggle);
+    dropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', handleDropdownToggle);
+    });
+
+    // Cleanup
+    return () => {
+      mobileNavToggle?.removeEventListener('click', handleMobileToggle);
+      dropdownToggles.forEach(toggle => {
+        toggle.removeEventListener('click', handleDropdownToggle);
+      });
+    };
+  }, []);
+};
+
+// Home page component
+const HomePage = () => (
+  <Suspense fallback={<LoadingSpinner />}>
+    <Hero />
+    <About />
+    <Stats />
+    <Testimonials />
+    <HowWeWork />
+    <FAQ />
+    <CallToAction />
+    <Team />
+    <Contact />
+  </Suspense>
+);
 
 function App() {
+  useMobileNavigation();
+
   useEffect(() => {
     // Initialize AOS animation library
     AOS.init({
@@ -29,79 +87,30 @@ function App() {
       once: true,
       mirror: false
     });
-
-  
-
-
-    // Initialize mobile nav toggle
-    const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-    if (mobileNavToggle) {
-      mobileNavToggle.addEventListener('click', function() {
-        document.querySelector('body').classList.toggle('mobile-nav-active');
-        this.classList.toggle('bi-list');
-        this.classList.toggle('bi-x');
-      });
-    }
-
-    // Handle dropdown toggles
-    document.querySelectorAll('.toggle-dropdown').forEach(toggle => {
-      toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        this.closest('li').classList.toggle('dropdown-active');
-      });
-    });
-
-
-
-    // Clean up event listeners on component unmount
-    return () => {
-      const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
-      if (mobileNavToggle) {
-        mobileNavToggle.removeEventListener('click', function() {});
-      }
-    };
-      }, []);
+  }, []);
 
   return (
-    <Router>
-      <div className="index-page">
-        <Header />
-        <main className="main">
-          <Routes>
-            <Route path="/" element={
-              <>
-              <Hero />
-              <About />
-              <Stats />
-              <Testimonials />
-              <HowWeWork />
-              <FAQ />
-              <CallToAction />
-              <Team />
-              <Contact />
-
-
-                {/*
-                <Services />
-                <Clients />
-                <Testimonials />
-                <HowWeWork />
-                <Faq />
-                <CallToAction />
-                <Team />
-                <Contact />
-                */}
-              </>
-            } 
-            />
-            
-            {/* Add other routes here */}
-          </Routes>
-        </main>
-        <Footer />
-        <ScrollToTop />
-      </div>
-    </Router>
+    <ErrorBoundary>
+      <HelmetProvider>
+        <SEOHead />
+        <Router>
+          <div className="index-page">
+            <Header />
+            <main className="main">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                {/* Future routes can be added here */}
+                {/* <Route path="/about" element={<AboutPage />} /> */}
+                {/* <Route path="/services" element={<ServicesPage />} /> */}
+                {/* <Route path="/contact" element={<ContactPage />} /> */}
+              </Routes>
+            </main>
+            <Footer />
+            <ScrollToTop />
+          </div>
+        </Router>
+      </HelmetProvider>
+    </ErrorBoundary>
   );
 }
 
