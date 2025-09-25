@@ -467,40 +467,25 @@
 
     <!-- Performance Monitoring -->
     <script>
-      // Core Web Vitals monitoring
-      function getCLS(onPerfEntry) {
-        if (onPerfEntry && onPerfEntry instanceof Function) {
-          import('web-vitals').then(({getCLS}) => getCLS(onPerfEntry));
-        }
-      }
-      
-      function getFID(onPerfEntry) {
-        if (onPerfEntry && onPerfEntry instanceof Function) {
-          import('web-vitals').then(({getFID}) => getFID(onPerfEntry));
-        }
-      }
-      
-      function getLCP(onPerfEntry) {
-        if (onPerfEntry && onPerfEntry instanceof Function) {
-          import('web-vitals').then(({getLCP}) => getLCP(onPerfEntry));
+      // Core Web Vitals monitoring - Simple implementation
+      function reportWebVitals() {
+        if (typeof window !== 'undefined' && 'performance' in window) {
+          // Simple performance tracking
+          window.addEventListener('load', function() {
+            // Track page load time
+            const navigationTiming = performance.getEntriesByType('navigation')[0];
+            if (navigationTiming && window.gtag) {
+              window.gtag('event', 'timing_complete', {
+                'name': 'load',
+                'value': Math.round(navigationTiming.loadEventEnd - navigationTiming.loadEventStart)
+              });
+            }
+          });
         }
       }
 
-      // Send to analytics
-      function sendToGoogleAnalytics({name, delta, id}) {
-        gtag('event', name, {
-          event_category: 'Web Vitals',
-          event_label: id,
-          value: Math.round(name === 'CLS' ? delta * 1000 : delta),
-          non_interaction: true,
-        });
-      }
-
-      getCLS(sendToGoogleAnalytics);
-      getFID(sendToGoogleAnalytics);
-      getLCP(sendToGoogleAnalytics);
+      // Initialize performance monitoring
+      reportWebVitals();
     </script>
   </body>
-
-
 </html>
